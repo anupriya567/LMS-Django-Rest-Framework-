@@ -136,7 +136,7 @@ class ValidatePayment(APIView):
 class SubscriptionList(generics.ListAPIView):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
        
 class CourseSubscribedByUser(generics.ListAPIView):
     serializer_class = CourseSerializer
@@ -145,14 +145,15 @@ class CourseSubscribedByUser(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         user = request.user
+        
         # courses ki id hai
-        courses = Subscription.objects.filter(user=self.kwargs.get('pk')).values_list('course')
+        courses = Subscription.objects.filter(user__username=pk).values_list('course')
 
         # course object hai
         self.queryset = Course.objects.filter(pk__in = courses)
 
         if not user.is_superuser:
-            if pk != user.pk:
+            if pk != user.username:
                 return Response({"detail": "You are not authorized."},  status=status.HTTP_403_FORBIDDEN)
 
         return super().get(request, *args, **kwargs)

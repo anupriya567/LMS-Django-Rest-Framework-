@@ -10,7 +10,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDe
 from chapters.models import Chapter, chapter_choices, chapter_choices_description, video_plateform_choices
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
-# from core.permissions import isAdminUserOrReadOnly
+from core.permissions import IsAdminOrReadOnly
 import uuid
 
 
@@ -70,8 +70,11 @@ class ChapterCreate(CreateAPIView):
         return serializer
             
         
-class ChapterDetail(APIView):
-
+class ChapterDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
+    permission_classes = [IsAdminOrReadOnly]
+                          
     def get(self, request, **kargs):
         chapter_id = kargs.get('pk')
         user = request.user

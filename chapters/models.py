@@ -34,8 +34,8 @@ class Chapter(models.Model):
                                        on_delete=models.CASCADE, related_name='child_chapters')
                                        
     
-    def __str__(self):
-        return f" {self.index} - {self.chapter_type} - id:{self.id} - parent: ({self.parent_chapter})"
+    # def __str__(self):
+    #     return f" {self.index} - {self.chapter_type} - id:{self.id} - parent: ({self.parent_chapter})"
 
 
 class LinkChapter(models.Model):

@@ -8,7 +8,6 @@ from coupons.models import Coupon
 from coupons.serializers import CouponSerializer
 from courses.serializers import CourseSerializer
 from core.serializers import UserSerializer
-from core.serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, Serializer
 

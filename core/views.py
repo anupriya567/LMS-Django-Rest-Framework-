@@ -48,12 +48,35 @@ def api_root(request):
           'Make Payment on Razorpay': 'http://127.0.0.1:5500/djangoo/flyhigh/payment_test/index.html',
           'Validate Payment': reverse('orders:validate-payment',request=request)
         },
-        'Subscription':
+        'Subscriptions':
         {
           'Subscription List':reverse("subscriptions:subscription-list", request=request),
-          'CourseSubscribedByUser':reverse("subscriptions:subscription-list-of-user", request=request),
+          # 'CourseSubscribedByUser':reverse("subscriptions:subscription-list-of-user",args=['<user_id>'], request=request),
+          
+        },
+          'Doubts':
+        {
+          'Doubts List':reverse("doubts:doubts-list", request=request),
+          'Doubts Detail':reverse("doubts:doubts-detail",args = ['<doubt_id>'], request=request),
+          # 'Doubts Create':reverse("doubts:doubts-create", request=request),
+          # 'CourseSubscribedByUser':reverse("subscriptions:subscription-list-of-user",args=['<user_id>'], request=request),
+          
+        },
+
+     'DoubtAnswers':
+        {
+          'DoubtAnswers List':reverse("doubts:answers-list", request=request),
+          'Doubts Detail':reverse("doubts:answers-detail",args = ['<doubt_id>'], request=request),
+          # 'Doubts Create':reverse("doubts:doubts-create", request=request),
+          # 'CourseSubscribedByUser':reverse("subscriptions:subscription-list-of-user",args=['<user_id>'], request=request),
           
         }
+
     }
     return Response(response)
 
+
+
+# 'DoubtAnswers List':reverse("doubts:answers-list", request=request),
+# ye answers basename se aaya h
+# doubts ye app ka name h

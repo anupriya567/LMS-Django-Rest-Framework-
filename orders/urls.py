@@ -13,6 +13,6 @@ path('validate-payment/',views.ValidatePayment.as_view(),name = "validate-paymen
 SubscriptionUrls= [
    
 path('',views.SubscriptionList.as_view(),name = 'subscription-list'),
-path('user/<int:pk>', views.CourseSubscribedByUser.as_view(),name='subscription-list-of-user')
+path('user/<str:pk>', views.CourseSubscribedByUser.as_view(),name='subscription-list-of-user')
 
 ]
