@@ -3,7 +3,13 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework_simplejwt.views import TokenObtainPairView
+from core.serializers import MyTokenObtainPairSerializer
 
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+    
 @api_view()
 def api_root(request):
     response = {
@@ -59,7 +65,7 @@ def api_root(request):
           'Doubts List':reverse("doubts:doubts-list", request=request),
           'Doubts Detail':reverse("doubts:doubts-detail",args = ['<doubt_id>'], request=request),
           # 'Doubts Create':reverse("doubts:doubts-create", request=request),
-          # 'CourseSubscribedByUser':reverse("subscriptions:subscription-list-of-user",args=['<user_id>'], request=request),
+          
           
         },
 
@@ -70,8 +76,13 @@ def api_root(request):
           # 'Doubts Create':reverse("doubts:doubts-create", request=request),
           # 'CourseSubscribedByUser':reverse("subscriptions:subscription-list-of-user",args=['<user_id>'], request=request),
           
-        }
+        },
+      'Authentication': 
+      {
+       'Generate Token Pair':reverse("token_obtain_pair", request=request),
+       'Generate Access Token from Refresh Token ':reverse("token_refresh", request=request),
 
+      },
     }
     return Response(response)
 

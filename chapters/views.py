@@ -57,7 +57,7 @@ class ChapterList(ListAPIView):
 class ChapterCreate(CreateAPIView):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
-    # permission = IsAdminUser
+    permission = IsAdminUser
 
    
     def get_serializer(self,*args, **kwargs):

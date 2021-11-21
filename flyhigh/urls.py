@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from core.views import api_root
+from core.views import api_root,MyTokenObtainPairView
 from orders.urls import OrderUrls,SubscriptionUrls
+from django.conf import settings
+from django.conf.urls.static import static
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', api_root, name='api_root'),
@@ -29,5 +37,8 @@ urlpatterns = [
     path('api/subscriptions/',include((SubscriptionUrls, 'order'), namespace='subscriptions')),
     path('api/reviews/', include(('reviews.urls', 'reviews'), namespace='reviews')),
     path('api/doubts/', include(('doubts.urls', 'doubts'), namespace='doubts')),
+
+    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
    
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
