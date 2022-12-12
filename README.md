@@ -79,7 +79,7 @@ DATABASES = {
 > client, server, db on same computer = > tier 1 architecture</br>
 
 
-
+</br>
 ### Error - not use @api_view decorator
 
 ```
