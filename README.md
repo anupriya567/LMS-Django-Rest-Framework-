@@ -1,4 +1,167 @@
 # LMS-Django-Rest-Framework-
+
+## Learning Management System(LMS) using Django RestFramework-
+I build rest apis to handle CRUD and other requests
+
+### Basic Endpoint 
+/courses/ => list of all courses</br>
+/course/1 => course detail of course with id = 1</br>
+
+
+### Structure that we want to show in our project
+</br>
+Module 1 - Installation</br>
+             1. set up VS code</br>
+             2. virtual env set up</br>
+             3. install python & django</br>
+
+</br>
+Module 2 - .............</br>
+          -</br>
+          -</br>
+          -</br>
+</br>
+How we can do this-            
+```             
+model- Mainchapter(heading type)
+     - subChapter(video, text, link) 
+```
+
+or
+
+```
+model - Chapter(heading, video, text, link)
+```
+</br>
+### Why making tag app? 
+Tag for searching a course
+</br>
+### Why creating multiple apps in project?
+Creating apps-
+
+dividing the whole big project into different smaller apps makes it managable, less complex and easy to debug
+  ```
+  'coupon',
+    'chapter',
+    'doubt',
+    'review',
+    'course',
+    'order'
+```
+</br>
+### Database
+</br>
+Database -> MySQL</br>
+to view tables and db -> MySQLWorkbench</br>
+to test api, we need a client -> (Postman)[https://www.postman.com/]</br>
+Postman is an API platform for developers to design, build, test and iterate their APIs.
+
+```
+</br>
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : DB_NAME,
+        'PORT' : DB_PORT,
+        'HOST' : DB_HOST,
+        'USER' : DB_USER,
+        'PASSWORD' : DB_PASSWORD
+    },
+```
+> client = postman</br>
+> server = MySQL server</br>
+> Db = MySql</br>
+> client, server, db on same computer = > tier 1 architecture</br>
+
+
+
+### Error - not use @api_view decorator
+
+```
+AssertionError at /api/course/test
+.accepted_renderer not set on Response
+Request Method:	GET
+Request URL:	http://127.0.0.1:8000/api/course/test
+Django Version:	4.1.4
+Exception Type:	AssertionError
+Exception Value:	
+.accepted_renderer not set on Response
+```
+
+### *Why we are using 'slug' if we are having 'id' to uniquely identify a category or a course
+
+for URL Mapping
+
+endpoint for fetching course-detail
+using id - 
+> api/course/2
+
+using slug - 
+> api/course/pythonDevelopment
+
+url using slug is much understandable
+
+SlugField
+```
+class SlugField(max_length=50, **options)
+```
+Slug is a newspaper term. A slug is a short label for something, containing only letters, numbers, underscores or hyphens. They’re generally used in URLs.
+
+### Django Generic Views [https://www.django-rest-framework.org/api-guide/generic-views/]
+
+Django’s generic views were developed to ease that pain. They take certain common idioms and patterns found in view development and abstract them so that you can quickly write common views of data without having to write too much code.
+
+
+### Returning URLs[https://www.django-rest-framework.org/api-guide/reverse/]
+It's probably better practice to return absolute URIs from your Web APIs, such as http://example.com/foobar, 
+rather than returning relative URIs, such as /foobar
+
+### Why use namespace?
+
+test-api, present in multiple apps
+
+for getting absolute url - 
+```
+reverse(view-name, request = request)
+{
+   "API Test" : reverse('test-api', request = request)
+}
+```
+o/p - api/coupons/test</br>
+test api coupons app ki choose kr li h</br>
+
+but if we want ki course app ki hi test api ho</br>
+so add namespace also</br>
+```
+ path('api/', include(('course.urls', 'course'), namespace = 'course'))
+```
+### Getting view name from viewsets
+
+basename = course</br>
+
+for getting complete list of courses</br>
+view name = course-list</br>
+
+detail of a course</br>
+view name = course-detail</br>
+```
+{
+'CourseList' : reverse('course: course-list', request = request),
+'CourseDetail' : reverse('course: course-detail', request = request),
+}
+```
+
+```
+course_router = DefaultRouter()
+course_router.register('',views.CourseVS,basename="course")
+
+```
+
 ### 1)  Same App but used with different Base Urls
 
 - We want to add subscription in Order App
