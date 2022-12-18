@@ -226,7 +226,21 @@ path('',views.SubscriptionList.as_view(),name = 'subscription-list'),
 
 ### 2) If field is foreign key in models.py, and we display the model object
 
+```
+class Subscription(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
+    course = models.ForeignKey(
+        Course, on_delete=models.CASCADE, related_name='subscriptions')
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name='subscriptions')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='subscriptions')
+    time = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.user.username} - {self.course.title}'   
+
+```
 ```
 class SubscriptionSerializer(ModelSerializer):
    
