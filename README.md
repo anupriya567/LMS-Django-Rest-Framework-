@@ -135,8 +135,10 @@ rather than returning relative URIs, such as /foobar
 test-api, present in multiple apps
 
 for getting absolute url - 
-```
+
 reverse(view-name, request = request)
+
+```
 {
    "API Test" : reverse('test-api', request = request)
 }
