@@ -33,9 +33,11 @@ or
 model - Chapter(heading, video, text, link)
 ```
 </br>
+
 ### Why making tag app? 
 Tag for searching a course
 </br>
+
 ### Why creating multiple apps in project?
 Creating apps-
 
@@ -49,15 +51,16 @@ dividing the whole big project into different smaller apps makes it managable, l
     'order'
 ```
 </br>
+
 ### Database
 </br>
 Database -> MySQL</br>
 to view tables and db -> MySQLWorkbench</br>
 to test api, we need a client -> (Postman)[https://www.postman.com/]</br>
 Postman is an API platform for developers to design, build, test and iterate their APIs.
+</br>
 
 ```
-</br>
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -80,6 +83,7 @@ DATABASES = {
 
 
 </br>
+
 ### Error - not use @api_view decorator
 
 ```
