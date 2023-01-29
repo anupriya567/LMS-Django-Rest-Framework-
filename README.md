@@ -21,7 +21,8 @@ Module 2 - .............</br>
           -</br>
           -</br>
 </br>
-How we can do this-            
+How we can do this-      
+
 ```             
 model:
  Mainchapter(heading type)
@@ -32,7 +33,9 @@ model:
 or
 
 ```
-model - Chapter(heading, video, text, link)
+model:
+Chapter(heading, video, text, link)
+
 ```
 </br>
 
