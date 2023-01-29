@@ -23,8 +23,10 @@ Module 2 - .............</br>
 </br>
 How we can do this-            
 ```             
-model- Mainchapter(heading type)
-     - subChapter(video, text, link) 
+model:
+ Mainchapter(heading type)
+ 
+ SubChapter(video, text, link) 
 ```
 
 or
